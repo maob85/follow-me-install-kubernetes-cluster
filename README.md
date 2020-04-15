@@ -2,27 +2,26 @@
 
 ![dashboard-home](./images/dashboard-home.png)
 
-本系列文档介绍使用二进制部署 `kubernetes v1.16.6` 集群的所有步骤（Hard-Way 模式）。
+This series of documents describes all the steps for deploying kubernetes v1.16.6 clusters using binary (Hard-Way mode).
 
-在部署的过程中，将详细列出各组件的启动参数，它们的含义和可能遇到的问题。
+During the deployment process, the startup parameters of each component, their meaning and possible problems will be detailed.
 
-部署完成后，你将理解系统各组件的交互原理，进而能快速解决实际问题。
+Once deployed, you will understand how the components of the system interact with each other so that you can quickly solve real problems.
 
-所以本文档主要适合于那些有一定 kubernetes 基础，想通过一步步部署的方式来学习和了解系统配置、运行原理的人。
+So this document is mainly suitable for those who have some kubernetes foundation and want to learn and understand the system configuration, operating principles through a step-by-step deployment approach.
 
-本系列系文档适用于 `CentOS 7` 及以上版本系统，**随着各组件的更新而更新**，有任何问题欢迎提 issue！
+This series of documents is for Debian 10 and above and will be updated as each component is updated.
 
-由于启用了 `x509` 证书双向认证、`RBAC` 授权等严格的安全机制，建议**从头开始部署**，否则可能会认证、授权等失败！
+With strict security mechanisms such as x509 certificate bidirectional authentication, RBAC authorization, etc. enabled, it is recommended to deploy from scratch, otherwise authentication, authorization, etc. may fail!
 
-从 v1.16.x 版本开始，本文档做了如下调整：
-1. 容器运行时：用 containerd 替换 docker，更加简单、健壮；相应的命令行工具为 crictl；
-2. Pod 网络：用 calico 替换 flannel 实现 Pod 互通，支持更大规模的集群；
+Starting with v1.16.x, the following adjustments have been made to this document.
 
-新增指标监控系统：使用主流的 Prometheus、Grafana 技术栈实现集群指标采集和监控；
+    Container runtime: replace docker with containerd for simpler, more robust; the corresponding command line tool is crictl.
+    Pod network: replacing flannels with calico to enable pod interoperability and support larger clusters.
 
-如果想继续使用 docker 和 flannel，请参考附件文档。
+New indicator monitoring system: cluster indicator collection and monitoring using the mainstream Prometheus, Grafana technology stack.
 
-## 历史版本
+If you want to continue using the docker and flannel, please refer to the attached documentation.
 
 + [v1.6.2](https://github.com/opsnull/follow-me-install-kubernetes-cluster/tree/v1.6.2)：已停止更新；
 + [v1.8.x](https://github.com/opsnull/follow-me-install-kubernetes-cluster/tree/v1.8.x)：已停止更新；
